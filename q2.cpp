@@ -6,43 +6,43 @@ using namespace std;
 #define MAX 100
 
 int arr[MAX];
-int size;
+int arrSize = 0;  // renamed to avoid conflict
 
 void inputArray() {
     cout << "Enter number of elements: ";
-    cin >> size;
+    cin >> arrSize;
 
-    if (size > MAX) {
-        cout << "Size exceeds limit.\n";
-        size = 0;
+    if (arrSize > MAX || arrSize < 0) {
+        cout << "Size exceeds limit or invalid.\n";
+        arrSize = 0;
         return;
     }
 
-    cout << "Enter " << size << " elements:\n";
-    for (int i = 0; i < size; i++) {
+    cout << "Enter " << arrSize << " elements:\n";
+    for (int i = 0; i < arrSize; i++) {
         cin >> arr[i];
     }
 }
 
 void displayArray() {
     cout << "Array: ";
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < arrSize; i++) {
         cout << arr[i] << " ";
     }
     cout << endl;
 }
 
 void removeDuplicates() {
-    for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; ) {
+    for (int i = 0; i < arrSize; i++) {
+        for (int j = i + 1; j < arrSize; ) {
             if (arr[i] == arr[j]) {
-                // Shift elements to the left
-                for (int k = j; k < size - 1; k++) {
+                // Shift elements left to overwrite duplicate
+                for (int k = j; k < arrSize - 1; k++) {
                     arr[k] = arr[k + 1];
                 }
-                size--; // Reduce size
+                arrSize--;  // reduce array size
             } else {
-                j++; // Only increment if no deletion
+                j++;  // increment only if no deletion
             }
         }
     }
