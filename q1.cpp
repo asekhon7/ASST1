@@ -6,20 +6,20 @@ using namespace std;
 #define MAX 100
 
 int arr[MAX];
-int size = 0;
+int arrSize = 0;  
 
 void create() {
     cout << "Enter number of elements: ";
-    cin >> size;
+    cin >> arrSize;
 
-    if (size > MAX) {
-        cout << "Size exceeds maximum limit of " << MAX << ". Try again.\n";
-        size = 0;
+    if (arrSize > MAX || arrSize < 0) {
+        cout << "Invalid size. Must be between 0 and " << MAX << ". Try again.\n";
+        arrSize = 0;
         return;
     }
 
-    cout << "Enter " << size << " elements:\n";
-    for (int i = 0; i < size; i++) {
+    cout << "Enter " << arrSize << " elements:\n";
+    for (int i = 0; i < arrSize; i++) {
         cin >> arr[i];
     }
 
@@ -27,71 +27,71 @@ void create() {
 }
 
 void display() {
-    if (size == 0) {
+    if (arrSize == 0) {
         cout << "Array is empty.\n";
         return;
     }
 
     cout << "Array elements: ";
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < arrSize; i++) {
         cout << arr[i] << " ";
     }
     cout << endl;
 }
 
 void insert() {
-    if (size >= MAX) {
+    if (arrSize >= MAX) {
         cout << "Array is full. Cannot insert.\n";
         return;
     }
 
     int pos, val;
-    cout << "Enter position to insert (0 to " << size << "): ";
+    cout << "Enter position to insert (0 to " << arrSize << "): ";
     cin >> pos;
     cout << "Enter value to insert: ";
     cin >> val;
 
-    if (pos < 0 || pos > size) {
+    if (pos < 0 || pos > arrSize) {
         cout << "Invalid position.\n";
         return;
     }
 
-    for (int i = size; i > pos; i--) {
+    for (int i = arrSize; i > pos; i--) {
         arr[i] = arr[i - 1];
     }
 
     arr[pos] = val;
-    size++;
+    arrSize++;
 
     cout << "Element inserted.\n";
 }
 
 void remove() {
-    if (size == 0) {
+    if (arrSize == 0) {
         cout << "Array is empty. Nothing to delete.\n";
         return;
     }
 
     int pos;
-    cout << "Enter position to delete (0 to " << size - 1 << "): ";
+    cout << "Enter position to delete (0 to " << arrSize - 1 << "): ";
     cin >> pos;
 
-    if (pos < 0 || pos >= size) {
+    if (pos < 0 || pos >= arrSize) {
         cout << "Invalid position.\n";
         return;
     }
 
-    for (int i = pos; i < size - 1; i++) {
+    for (int i = pos; i < arrSize - 1; i++) {
         arr[i] = arr[i + 1];
     }
 
-    size--;
+    arrSize--;
 
     cout << "Element deleted.\n";
 }
 
 void linearSearch() {
-    if (size == 0) {
+    if (arrSize == 0) {
         cout << "Array is empty.\n";
         return;
     }
@@ -100,7 +100,7 @@ void linearSearch() {
     cout << "Enter value to search: ";
     cin >> val;
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < arrSize; i++) {
         if (arr[i] == val) {
             cout << "Element found at index " << i << ".\n";
             return;
